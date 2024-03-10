@@ -22,3 +22,14 @@ class Section:
     
     def clean_section(self):
         count = 0
+        for pos, tasks in enumerate(Section.tasks):
+            if tasks.completed:
+                count += 1
+                del Section.tasks[pos]
+        return f"Cleared {count} tasks."
+    
+    def view_section(self):
+        text = f"Section {self.name}:\n"
+        for show in Section.tasks:
+            text += f"{show.details()}\n"
+        return text
